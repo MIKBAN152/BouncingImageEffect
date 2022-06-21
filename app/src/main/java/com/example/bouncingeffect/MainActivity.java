@@ -19,8 +19,9 @@ public class MainActivity extends AppCompatActivity {
         im_small_circle = (ImageView) findViewById(R.id.IV_small_circle);
 
 
-        //BouncingEffect be = new BouncingEffect(im_big_circle,im_small_circle,5,bottomDif,periodUp,periodDown,true);
-        BouncingEffect be = new BouncingEffect(im_big_circle,im_small_circle,4);
+        //BouncingEffect be = new BouncingEffect(im_big_circle,im_small_circle,5,600,15,10,true);
+        BouncingEffect be = new BouncingEffect(im_big_circle,im_small_circle,5,600,15,7,true);
+        //BouncingEffect be = new BouncingEffect(im_big_circle,im_small_circle,4);
 
         im_small_circle.setOnClickListener(view -> {
             be.StartBounce();

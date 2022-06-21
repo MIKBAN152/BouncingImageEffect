@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/bouncingeffect.iml" filepath="$PROJECT_DIR$/.idea/modules/bouncingeffect.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/bouncingeffect.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/bouncingeffect.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/bouncingeffect.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/bouncingeffect.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/bouncingeffect.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/bouncingeffect.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/bouncingeffect.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/bouncingeffect.app.unitTest.iml" />
     </modules>
   </component>
 </project>

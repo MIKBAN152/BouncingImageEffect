@@ -36,10 +36,10 @@ public class BouncingEffect {
     boolean gravity_effect = true; //speed will increase after each step when going down and decrease when going up
 
     private boolean going_up = false; //false when going down
-    private float step_increment_percentage = 1.015f; //speed up when going down
-    private float step_decrement_percentage = 1.010f; //speed down when going up
+    private float step_increment_percentage = 1.020f; //speed up when going down
+    private float step_decrement_percentage = 1.050f; //speed down when going up
     private int step_counter = 0; //each step/movement/transition while going up or down
-    private float step_distance_orig = 5f; //pixels to move originally in each interval
+    private float step_distance_orig = 7f; //pixels to move originally in each interval
     private float step_distance = step_distance_orig; //current step distance
 
 
@@ -103,7 +103,7 @@ public class BouncingEffect {
                 current_interval = going_down_interval;
                 step_counter = 0;
                 going_up = false;
-
+                step_distance = step_distance_orig * step_increment_percentage;
             }
         }else{
             y_position += step_distance;
@@ -116,7 +116,7 @@ public class BouncingEffect {
                 current_interval = going_up_interval;
                 //step_counter = 0;
                 going_up = true;
-                y_top += (bounce_max_distance - y_top) / 3;
+                y_top += (bounce_max_distance - y_top) / 2;
             }
         }
         iv_moving.setY(y_position);
