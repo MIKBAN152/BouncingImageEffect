@@ -18,9 +18,13 @@ public class MainActivity extends AppCompatActivity {
         im_big_circle = (ImageView) findViewById(R.id.IV_big_circle);
         im_small_circle = (ImageView) findViewById(R.id.IV_small_circle);
 
-
+        //normal
         //BouncingEffect be = new BouncingEffect(im_big_circle,im_small_circle,5,600,15,10,true);
+
+        //primera caida rapida
         BouncingEffect be = new BouncingEffect(im_big_circle,im_small_circle,5,600,15,7,true);
+
+        //default
         //BouncingEffect be = new BouncingEffect(im_big_circle,im_small_circle,4);
 
         im_small_circle.setOnClickListener(view -> {
