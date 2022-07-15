@@ -21,14 +21,15 @@ public class BouncingEffect {
     ImageView iv_big;
     ImageView iv_small;
 
-    //position mall
+    //position ball
     private float y_origin_small = -1; //initial moving image y position
     private float y_position_small = 0; //current y position of moving image
     private float y_max_bounce_height_small = 0; //max height that the button bounces to
     private boolean lock_click = false;
     private float y_origin_big = -1; //initial moving image y position
     private float y_position_big = 0; //current y position of moving image
-
+    private long quant_steps_wait = 30;
+    private long count_steps_wait = 0;
 
     //bounce effect parameters
     int bounce_times=3; //how many bounces
@@ -139,6 +140,7 @@ public class BouncingEffect {
     public void ResetPosition(){
         if(y_origin_small > -1 && !lock_click){
 
+            count_steps_wait = 0;
             if(y_origin_big <= -1){
                 y_origin_big = iv_big.getY();
             }
@@ -167,44 +169,44 @@ public class BouncingEffect {
     private void PlanetsGetClose(){
         //small_planet goes up and big planet goes down and meet in the middle
 
-        y_position_small -= step_distance_orig;
+        if(!going_up_big || (going_up_big && count_steps_wait > quant_steps_wait)) {
+            y_position_small -= step_distance_orig;
 
-        if (y_position_small <= y_origin_small ) {
-            //force last position and finish
-            y_position_small = y_origin_small;
+            if (y_position_small <= y_origin_small || (going_up_big && y_position_big <= y_origin_big)) {
+                //force last position and finish
+                y_position_small = y_origin_small;
 
-            timer.purge();
-            timer.cancel();
-            lock_click= false;
-        }else{
-            //move
-        }
-
-        if(going_up_big){
-            y_position_big -= step_distance_orig;
-
-            if (y_position_big <= y_origin_big  ) {
                 //force last position and finish
                 y_position_big = y_origin_big;
-                //change and go up
                 going_up_big = false;
-            }else{
+
+                timer.purge();
+                timer.cancel();
+                lock_click = false;
+            } else {
                 //move
             }
+
+            if (going_up_big) {
+                y_position_big -= step_distance_orig;
+
+            } else {
+                y_position_big += step_distance_orig;
+
+                if (y_position_big >= y_origin_big + bounce_max_distance / 2) {
+                    //force last position and finish
+                    y_position_big = y_origin_big + bounce_max_distance / 2;
+                    //change and go up
+                    going_up_big = true;
+                } else {
+                    //move
+                }
+            }
+            iv_small.setY(y_position_small);
+            iv_big.setY(y_position_big);
+
         }else{
-            y_position_big += step_distance_orig;
-
-            if (y_position_big >= y_origin_big + bounce_max_distance/2 ) {
-                //force last position and finish
-                y_position_big = y_origin_big + bounce_max_distance/2;
-                //change and go up
-                going_up_big = true;
-            }else{
-                //move
-            }
+            count_steps_wait +=1;
         }
-
-        iv_small.setY(y_position_small);
-        iv_big.setY(y_position_big);
     }
 }
